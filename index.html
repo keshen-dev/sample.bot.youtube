@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <style>
+    .container {
+    display: block;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+div.box {
+    display: inline-block;
+  width:40%;
+    vertical-align: middle;
+    margin: 10px;
+}
+    div.box img{
+     width:100%; 
+    }
+  </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="box"><img  data-id="1" src="https://sanjabbook.ir/pannel/pic/2022/cup-shimi-10-zirezarebin09040042sanjabbook-tumb.webp" alt=""> </div>
+        <div class="box"><img  data-id="2" src="https://sanjabbook.ir/pannel/pic/2022/cup-shimi-10-zirezarebin09040042sanjabbook-tumb.webp" alt=""></div>
+        <div class="box"><img  data-id="3"  src="https://sanjabbook.ir/pannel/pic/2022/cup-shimi-10-zirezarebin09040042sanjabbook-tumb.webp" alt=""></div>
+        <div class="box"><img  data-id="4" src="https://sanjabbook.ir/pannel/pic/2022/cup-shimi-10-zirezarebin09040042sanjabbook-tumb.webp" alt=""></div>
+        <div class="box"><img  data-id="5" src="https://sanjabbook.ir/pannel/pic/2022/cup-shimi-10-zirezarebin09040042sanjabbook-tumb.webp" alt=""></div>
+        <div class="box"><img  data-id="6" src="https://sanjabbook.ir/pannel/pic/2022/cup-shimi-10-zirezarebin09040042sanjabbook-tumb.webp" alt=""></div>
+    </div>
+    
+</body>
+  
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"  ></script>
+  <script>
+     let tg = window.Telegram.WebApp;
+      tg.expand();
+      let item = "";
+    
+    $(document).ready(function(){
+     
+      $("img").on("click",function(){
+        $id = $(this).attr("data-id");
+         
+        if(tg.MainButton.isVisible){
+          tg.MainButton.hide();
+          
+        }else{
+            tg.MainButton.setText("ali");
+          item = $id;
+           
+            tg.MainButton.show();
+          //tg.openTelegramLink("https://t.me/hamed_ghaffarpour_k");
+          //tg.openLink("https://sanjabbook.ir/",try_instant_view=true);
+             var params ={title:"عنوان", message:"سلوم", buttons:[
+               {type:"ok",text:"حله"},
+                {type:"close",text:"ببند"},
+             ]};
+          //  tg.showPopup(params,function(){
+            // tg.showAlert("salam ali");
+           // });
+          
+          
+         // tg.showConfirm("حله");
+        }
+      });
+      
+      Telegram.WebApp.onEvent("mainButtonClicked",function(){
+        tg.sendData(item);
+        tg.showConfirm("حله");
+        tg.close();
+      });
+      
+    });
+    
+    
+    
+  </script>
+</html>
